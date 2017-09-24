@@ -1,0 +1,29 @@
+{% extends "wastebasket/wastebasket_list.html" %}
+
+{% block detail %}
+    <div class="container-fluid">
+        <div class="row">
+            <form method="POST">
+                {% csrf_token %}
+              
+                <div class="col-xl-6">
+                    <table class="table">{{ form.as_table }}</table>
+
+                    <button type="submit" class="btn btn-primary">
+                        Save
+                    </button>
+                </div>
+            </form>
+
+            <div class="col-xl-6">
+                <h2>Content:</h2>  
+                <ul class="list-group">
+                    {% for path in wastebasket.content %}
+                        <li class="list-group-item">{{ path }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

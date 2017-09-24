@@ -1,0 +1,32 @@
+{% extends "wastebasket/home.html" %}
+
+{% block title %}Wastebasket list{% endblock %}
+
+{% block top_menubar %}
+    {{ block.super }}
+    <a class="navbar-brand navbar-toggler-right"  href= "{% url 'wastebasket:wastebasket_new' %}">Add</a>
+{% endblock %}
+
+{% block content %}
+    {% if wastebaskets %}
+        <nav class="col-xl-1 bg-faded sidebar">
+            <ul class="nav nav-pills flex-column">
+            {% for wb in wastebaskets %}
+                <li class="nav-item">
+                    <a class="nav-link" href= "{% url 'wastebasket:wastebasket_detail' wb.pk %}">
+                        {{ wb }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </nav>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            <strong>Warning!</strong> No wastebaskets found :(
+        </div>
+    {% endif %}
+
+    <div class="col-xl-11">
+        {% block detail %}{% endblock %}
+    </div>
+{% endblock %}

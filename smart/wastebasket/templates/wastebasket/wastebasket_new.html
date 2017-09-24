@@ -1,0 +1,17 @@
+{% extends "wastebasket/home.html" %}
+    
+{% block title %}New wastebasket{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            
+            <table class="table">{{ form.as_table }}</table>
+
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+        </form>
+    </div>
+{% endblock %}

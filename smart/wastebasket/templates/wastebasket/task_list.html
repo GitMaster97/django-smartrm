@@ -1,0 +1,46 @@
+{% extends "wastebasket/home.html" %}
+
+{% block title %}Task list{% endblock %}
+
+{% block top_menubar %}
+    {{ block.super }}
+    <a class="navbar-brand navbar-toggler-right"  href= "{% url 'wastebasket:task_new' %}">Add</a>
+{% endblock %}
+
+{% block content %}
+    {% if tasks %}
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Wastebasket</th>
+                <th>Rmdir</th>
+                <th>Force</th>
+                <th>Dry-run</th>
+                <th>Restore</th>
+                <th>Regex</th>
+                <th>Run</th>
+            </thead>
+
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td><a href= "{% url 'wastebasket:task_detail' task.pk %}">{{ task }}</a></td>
+                        <td>{{ task.wastebasket }}</td>
+                        <td>{{ task.rmdir }}</td>
+                        <td>{{ task.force }}</td>
+                        <td>{{ task.dry_run }}</td>
+                        <td>{{ task.restore }}</td>
+                        <td>{{ task.regex }}</td>
+                        <td><a href= "{% url 'wastebasket:task_result' task.pk %}">RUN</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            <strong>Warning!</strong> No tasks found :(
+        </div>
+    {% endif %}
+
+{% endblock %}
+

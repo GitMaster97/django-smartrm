@@ -1,0 +1,11 @@
+{% extends "wastebasket/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block top_menubar %}
+    <!--<a class="navbar-brand" href= {% url 'wastebasket:wastebasket_list' %}>Wastebaskets</a>
+    <a class="navbar-brand" href= {% url 'wastebasket:task_list' %}>Tasks</a>-->
+    <a class="navbar-brand" href="{% url 'wastebasket:wastebasket_list' %}">Wastebaskets</a>
+    <a class="navbar-brand" href= "{% url 'wastebasket:task_list' %}">Tasks</a>
+
+{% endblock %}

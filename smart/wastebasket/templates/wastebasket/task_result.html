@@ -1,0 +1,33 @@
+{% extends "wastebasket/home.html" %}
+
+{% block title %}Result{% endblock %} 
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <th>Action</th>
+            <th>Old path</th>
+            <th>New path</th>
+        </thead>
+
+        <tbody>
+            {% for src, dst in result %}
+                <tr>
+                    <td>{{ action }}</td>
+                    <td>{{ src }}</td>
+                    <td>{{ dst }}</td>
+                </tr>
+            {% endfor %}  
+        </tbody>
+    </table>
+
+        {% if task %}
+            <div class="alert alert-danger" role="alert">
+                <strong>Error!</strong> For "{{ task.wastebasket }}" the task is already running: {{ task.name }}
+            </div>
+        {% elif error_object %}
+            <div class="alert alert-danger" role="alert">
+                <strong>Error!</strong> {{ error_object.message }} "{{ error_object.raised_path }}".
+            </div>
+        {% endif %}
+{% endblock %} 
